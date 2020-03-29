@@ -44,7 +44,7 @@
    }"
    #+end_src
 
-   LASSIE provides ASDF resource type *lassie* which allows to generate CSS file on system load. Main difference to LASS is the support for *(:include ...)* directive.
+   CLASSIE provides ASDF resource type *classie* which allows to generate CSS file on system load. Main difference to LASS is the support for *(:include ...)* directive.
 
      
 ** Installation

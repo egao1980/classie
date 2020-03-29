@@ -1,14 +1,14 @@
 #|
-This file is a part of LASS(IE)
+This file is a part of (C)LASS(IE)
 (c) 2015 Shirakumo http://tymoon.eu (shinmera@tymoon.eu)
 (c) 2020 Nikolai Matiushev (egao1980@gmail.com)
 Author: Nicolas Hafner <shinmera@tymoon.eu>
 |#
 
-(defclass lassie-file (asdf:source-file)
+(defclass classie-file (asdf:source-file)
   ((output :initarg :output :initform NIL :accessor output))
-  (:default-initargs :type "lassie")
-  (:documentation "An ASDF source-file component to allow compilation of LASS to CSS in ASDF systems using LASSIE extentions."))
+  (:default-initargs :type "classie")
+  (:documentation "An ASDF source-file component to allow compilation of LASS to CSS in ASDF systems using classie extentions."))
 
 ;; Hack to ensure that ASDF recognises the class
 ;; as a keyword, which I think is currently a bug.
@@ -22,12 +22,12 @@ Author: Nicolas Hafner <shinmera@tymoon.eu>
 ;; ASDF/INTERFACE we simply smuggle our own class
 ;; into that package. Sneaky, but the only sensible
 ;; workaround for now.
-(defclass asdf/interface::lassie-file (lassie-file)
+(defclass asdf/interface::classie-file (classie-file)
   ())
 
-(defmethod asdf:source-file-type ((c lassie-file) (s asdf:module)) "lass")
+(defmethod asdf:source-file-type ((c classie-file) (s asdf:module)) "lass")
 
-(defmethod asdf:output-files ((op asdf:compile-op) (c lassie-file))
+(defmethod asdf:output-files ((op asdf:compile-op) (c classie-file))
   (values
    (list (merge-pathnames
           (or (output c)
@@ -35,10 +35,10 @@ Author: Nicolas Hafner <shinmera@tymoon.eu>
           (make-pathname :type "css" :defaults (asdf:component-pathname c))))
    T))
 
-(defmethod asdf:perform ((op asdf:load-op) (c lassie-file))
+(defmethod asdf:perform ((op asdf:load-op) (c classie-file))
   T)
 
-(defmethod asdf:perform ((op asdf:compile-op) (c lassie-file))
+(defmethod asdf:perform ((op asdf:compile-op) (c classie-file))
   (let* ((pathname (asdf:component-pathname c))
          (*default-pathname-defaults* (cl-fad:pathname-directory-pathname pathname)))
     (lass:generate pathname

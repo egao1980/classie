@@ -1,9 +1,9 @@
-(defpackage lassie
+(defpackage classie
   (:use :cl
         :parse-float
         :physical-quantities))
 
-(in-package :lassie)
+(in-package :classie)
 
 (defun adjust-luminosity (color amount)
   (let* ((rgb (cl-colors:parse-hex-rgb color))
