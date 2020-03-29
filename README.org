@@ -1,13 +1,13 @@
-* Lassie  - Lassie is the best friend of LASS - utility and functions for translating SCSS to LASS
+* Classie  - Lassie is the best friend of LASS - utility and functions for translating SCSS to LASS
 
 ** Usage
-   LASSIE is intended to be loaded and used in background providing LASS SCSS-like functions.
+   CLASSIE is intended to be loaded and used in background providing LASS SCSS-like functions.
 
    #+begin_src lisp
-   (ql:quickload :lassie)
+   (ql:quickload :classie)
    #+end_src
 
-   LASSIE provides basic arithmetic operations for values of various CSS related units of measure (in, pt, px) and aims to properly handle percent values.
+   CLASSIE provides basic arithmetic operations for values of various CSS related units of measure (in, pt, px) and aims to properly handle percent values.
    Additionally several utility functions are available:
       - *(:let* ...)* - similar to existing :let but works as CL (let* ...)
       - *(values &rest args)* - resolves and joins arguments to form CSS values list;
@@ -48,10 +48,10 @@
 
      
 ** Installation
-   LASSIE is available at [[http://ultralisp.org]] repository.
+   CLASSIE is available at [[http://ultralisp.org]] repository.
 
    #+begin_src lisp
-   (ql:quickload :lassie)
+   (ql:quickload :classie)
    #+end_src
 ** Author
 
