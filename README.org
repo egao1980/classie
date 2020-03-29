@@ -1,9 +1,58 @@
 * Lassie  - Lassie is the best friend of LASS - utility and functions for translating SCSS to LASS
 
 ** Usage
+   LASSIE is intended to be loaded and used in background providing LASS SCSS-like functions.
 
+   #+begin_src lisp
+   (ql:quickload :lassie)
+   #+end_src
+
+   LASSIE provides basic arithmetic operations for values of various CSS related units of measure (in, pt, px) and aims to properly handle percent values.
+   Additionally several utility functions are available:
+      - *(:let* ...)* - similar to existing :let but works as CL (let* ...)
+      - *(values &rest args)* - resolves and joins arguments to form CSS values list;
+      - *(:include path)* - includes external LASS file
+      - Color manipulation functions: *(darken ...)*, *(lighten ...)*, *(fade-in ...)*, *(fade-out ...)* and *(mix ...)* - see the corresponding SCSS functions
+      - *(ceil ...)* - ceiling numbers that rounds 49.5% to 50%
+      - *(ceiling ...)* - ceiling numbers that rounds 49.5% to 100% (as (ceiling 0.495) is 1.0)
+
+   #+begin_src lisp
+   CL-USER> (lass:compile-and-write '(a :background (ceil (* 0.85 "16px"))))
+   "a{
+     background: 14.00px;
+   }"
+   #+end_src
+
+   #+begin_src lisp
+   CL-USER> (lass:compile-and-write '(a :height (ceil (* 0.85 "16px"))))
+   "a{
+       height: 14.00px;
+   }"
+   #+end_src
+
+   #+begin_src lisp
+   CL-USER> (lass:compile-and-write '(div :width (+ 2in (ceil (* 85% "800px")))))
+   "div{
+        width: 9.08in;
+   }"
+   #+end_src
+
+   #+begin_src lisp
+   CL-USER> (lass:compile-and-write '(div :background (darken "#fff" 20%)))
+   "div{
+       background: #CCCCCC;
+   }"
+   #+end_src
+
+   LASSIE provides ASDF resource type *lassie* which allows to generate CSS file on system load. Main difference to LASS is the support for *(:include ...)* directive.
+
+     
 ** Installation
+   LASSIE is available at [[http://ultralisp.org]] repository.
 
+   #+begin_src lisp
+   (ql:quickload :lassie)
+   #+end_src
 ** Author
 
 + Nikolai Matiushev (egao1980@gmail.com)
